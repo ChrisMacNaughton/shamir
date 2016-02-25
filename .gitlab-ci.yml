@@ -20,7 +20,8 @@ stages:
 test-stable:
   script:
     - curl -sSf https://static.rust-lang.org/rustup.sh | sh -s -- -y --disable-sudo
-    - travis-cargo build && travis-cargo test && travis-cargo coveralls --no-sudo
+    - travis-cargo build && travis-cargo test
+    - travis-cargo coveralls --no-sudo; echo ""
 
 test-beta:
   allow_failure: true
