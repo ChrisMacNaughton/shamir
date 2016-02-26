@@ -18,22 +18,19 @@ test-stable:
     - curl -sSf https://static.rust-lang.org/rustup.sh | sh -s -- -y --disable-sudo
     - travis-cargo build && travis-cargo test
     - travis-cargo coverage --no-sudo || true
-    - apt-get install -y tree
-    - ls target
-    - tree target/kcov
-    - cat target/kcov/index.json
+    - cat target/kcov/index.json || true
 
-# test-beta:
-#   allow_failure: true
-#   script:
-#     - curl -sSf https://static.rust-lang.org/rustup.sh | sh -s -- -y --disable-sudo --channel=beta
-#     - travis-cargo build && travis-cargo test
+test-beta:
+  allow_failure: true
+  script:
+    - curl -sSf https://static.rust-lang.org/rustup.sh | sh -s -- -y --disable-sudo --channel=beta
+    - travis-cargo build && travis-cargo test
 
-# test-nightly:
-#   allow_failure: true
-#   script:
-#     - curl -sSf https://static.rust-lang.org/rustup.sh | sh -s -- -y --disable-sudo --channel=nightly
-#     - travis-cargo build && travis-cargo test
+test-nightly:
+  allow_failure: true
+  script:
+    - curl -sSf https://static.rust-lang.org/rustup.sh | sh -s -- -y --disable-sudo --channel=nightly
+    - travis-cargo build && travis-cargo test
 
 publish:
   stage: publish
