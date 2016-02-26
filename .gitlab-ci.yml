@@ -1,7 +1,6 @@
 image: iceyec/ci-rust
 
 cache:
-  untracked: true
   key: $CI_BUILD_STAGE/$CI_BUILD_REF_NAME
   paths:
     - .cargo
@@ -18,7 +17,7 @@ test-stable:
     - curl -sSf https://static.rust-lang.org/rustup.sh | sh -s -- -y --disable-sudo
     - travis-cargo build && travis-cargo test
     - travis-cargo coverage --no-sudo || true
-    - cat target/kcov/index.json || true
+    - cat target/kcov*/index.json || true
 
 test-beta:
   allow_failure: true
