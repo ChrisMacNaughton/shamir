@@ -1,8 +1,5 @@
 image: iceyec/ci-rust
 
-before_script:
-  - export TRAVIS_JOB_ID=$CI_BUILD_ID
-
 cache:
   untracked: true
   key: $CI_BUILD_STAGE/$CI_BUILD_REF_NAME
@@ -20,7 +17,8 @@ test-stable:
   script:
     - curl -sSf https://static.rust-lang.org/rustup.sh | sh -s -- -y --disable-sudo
     - travis-cargo build && travis-cargo test
-    - travis-cargo coveralls --no-sudo; echo ""
+    - travis-cargo coverage --no-sudo || true
+    - ls target
 
 test-beta:
   allow_failure: true
