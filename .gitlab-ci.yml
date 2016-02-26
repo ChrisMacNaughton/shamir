@@ -21,7 +21,7 @@ test-stable:
     - apt-get install -y tree
     - ls target
     - tree target/kcov
-    - tree target/kcov-shamir-*
+    - cat target/kcov/index.json
 
 # test-beta:
 #   allow_failure: true
