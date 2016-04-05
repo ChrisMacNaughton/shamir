@@ -22,6 +22,14 @@ mod tests {
     }
 
     #[test]
+    #[should_panic]
+    #[allow(overflowing_literals)]
+    fn it_rejects_share_id_over_255() {
+        let secret_data = SecretData::with_secret("Hello, world!", 3);
+        let _ = secret_data.get_share(256);
+    }
+
+    #[test]
     fn it_issues_shares() {
         let secret_data = SecretData::with_secret("Hello, world!", 3);
 
